@@ -1,0 +1,11 @@
+﻿<Page x:Class="SalesDataAnalysisApp.SettingsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="Settings Page">
+    <StackPanel>
+        <TextBlock Text="Настройки пользователя" FontSize="16"/>
+        <TextBlock Text="{Binding CurrentUser.Username}"/>
+        <Button Content="Сменить пароль" Click="ChangePassword_Click"/>
+        <Button Content="Выйти" Click="Logout_Click"/>
+    </StackPanel>
+</Page>

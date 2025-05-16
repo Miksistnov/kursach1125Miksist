@@ -1,0 +1,32 @@
+﻿<Window x:Class="SalesDataAnalysisApp.AddEditFileWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Добавить/Редактировать файл"
+        Height="320"
+        Width="420"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="Выберите .docx файл:" FontWeight="Bold" Margin="0,0,0,10"/>
+        <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="0,0,0,10">
+            <TextBox x:Name="FileNameTextBox" IsReadOnly="True" Width="250" Margin="0,0,10,0"/>
+            <Button Content="Обзор..." Click="SelectFileButton_Click" Width="80"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="2" Margin="0,0,0,10">
+            <TextBlock Text="Категория:" VerticalAlignment="Center" Width="70"/>
+            <TextBox x:Name="CategoryTextBox" Width="120" Margin="0,0,10,0"/>
+            <TextBlock Text="Приоритет:" VerticalAlignment="Center" Width="70"/>
+            <TextBox x:Name="PriorityTextBox" Width="40"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="3" HorizontalAlignment="Right">
+            <Button Content="Сохранить" Click="SaveButton_Click" Width="90" Margin="5"/>
+            <Button Content="Отмена" Click="CancelButton_Click" Width="90" Margin="5"/>
+        </StackPanel>
+    </Grid>
+</Window>
