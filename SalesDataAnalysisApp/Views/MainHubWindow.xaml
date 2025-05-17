@@ -32,19 +32,25 @@
     </Window.Resources>
     <Grid>
         <DockPanel>
+
             <TabControl DockPanel.Dock="Left"
                         Width="140"
                         Background="#F5F5F5"
                         SelectedIndex="0"
                         SelectionChanged="TabControl_SelectionChanged"
                         TabStripPlacement="Left">
+
                 <TabItem Header="📁 Файлы" Tag="FileManagementPage"/>
                 <TabItem Header="📊 Аналитика" Tag="AnalyticsPage"/>
+                <TabItem Header="📝 Отчёт" Tag="FileReport"/>
                 <TabItem Header="🔔 Уведомления" Tag="NotificationsPage"/>
                 <TabItem Header="⚙️ Настройки" Tag="SettingsPage"/>
                 <TabItem Header="🚪 Выход" Tag="Exit"/>
+
+
             </TabControl>
             <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" Background="White"/>
         </DockPanel>
+
     </Grid>
 </Window>

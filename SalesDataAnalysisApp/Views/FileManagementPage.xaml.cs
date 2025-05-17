@@ -33,14 +33,14 @@ namespace SalesDataAnalysisApp
             LoadArchives();
         }
         private void SetFileActionButtonsState()
-{
-    bool canEdit = !_currentUser.IsBlocked;
-    AddButton.IsEnabled = canEdit;
-    EditButton.IsEnabled = canEdit;
-    DeleteButton.IsEnabled = canEdit;
-    DeleteSelectedButton.IsEnabled = canEdit;
-    UploadEditedFileButton.IsEnabled = canEdit;
-}
+        {
+            bool canEdit = !_currentUser.IsBlocked;
+            AddButton.IsEnabled = canEdit;
+            EditButton.IsEnabled = canEdit;
+            DeleteButton.IsEnabled = canEdit;
+            DeleteSelectedButton.IsEnabled = canEdit;
+            UploadEditedFileButton.IsEnabled = canEdit;
+        }
 
 
         private void LoadArchives()

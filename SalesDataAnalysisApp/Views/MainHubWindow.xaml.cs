@@ -7,6 +7,7 @@ namespace SalesDataAnalysisApp
 {
     public partial class MainHubWindow : Window
     {
+        private readonly string _connectionString = "Server=95.154.107.102;Database=SalesDataMiksist;Uid=student;Pwd=student;";
         public MainHubWindow()
         {
             InitializeComponent();
@@ -23,6 +24,7 @@ namespace SalesDataAnalysisApp
             if (e.Source is TabControl tabControl && tabControl.SelectedItem is TabItem selectedTab)
             {
                 var tag = selectedTab.Tag?.ToString();
+                if (tag == null) return;
 
                 if (tag == "Exit")
                 {
@@ -33,6 +35,7 @@ namespace SalesDataAnalysisApp
                 NavigateToPage(tag);
             }
         }
+
 
         private void NavigateToPage(string pageName)
         {
@@ -46,7 +49,10 @@ namespace SalesDataAnalysisApp
                         MainFrame.Navigate(new FileManagementPage(AppState.CurrentUser));
                         break;
                     case "AnalyticsPage":
-                        MainFrame.Navigate(new SalesDataAnalysisApp.Views.AnalyticsPage());
+                        MainFrame.Navigate(new AnalyticsPage());
+                        break;
+                    case "FileReport":
+                        MainFrame.Navigate(new FileReportPage(AppState.CurrentUser));
                         break;
                     case "NotificationsPage":
                         MainFrame.Navigate(new NotificationsPage());
