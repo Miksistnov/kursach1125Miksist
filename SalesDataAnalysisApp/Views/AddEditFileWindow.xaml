@@ -13,7 +13,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <TextBlock Text="Выберите .docx файл:" FontWeight="Bold" Margin="0,0,0,10"/>
+        <TextBlock Text="Выберите .docx/.pdf файл:" FontWeight="Bold" Margin="0,0,0,10"/>
         <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="0,0,0,10">
             <TextBox x:Name="FileNameTextBox" IsReadOnly="True" Width="250" Margin="0,0,10,0"/>
             <Button Content="Обзор..." Click="SelectFileButton_Click" Width="80"/>

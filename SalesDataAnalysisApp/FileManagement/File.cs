@@ -14,5 +14,9 @@ namespace SalesDataAnalysisApp.Models
         public string OwnerName { get; set; }
         public string OwnerRole { get; set; }
         public int ArchiveId { get; set; }
+        public string Status { get; set; } 
+        public string ModeratorComment { get; set; }
+        public int? ModeratorId { get; set; }
+
     }
 }

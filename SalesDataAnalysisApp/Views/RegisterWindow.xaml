@@ -1,61 +1,92 @@
 ﻿<Window x:Class="SalesDataAnalysisApp.RegisterWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Регистрация" Height="350" Width="400">
-    <Grid HorizontalAlignment="Center" Width="400" Height="334" VerticalAlignment="Top">
-        <!-- Поле для имени пользователя с плейсхолдером -->
-        <Grid Margin="20,20,20,0">
-            <TextBox x:Name="RegisterUsernameTextBox" 
-                     Margin="0,38,0,0" 
-                     VerticalAlignment="Top" 
-                     Background="Transparent" 
-                     GotFocus="RegisterUsernameTextBox_GotFocus" 
-                     LostFocus="RegisterUsernameTextBox_LostFocus" TextChanged="RegisterUsernameTextBox_TextChanged" />
-            <TextBlock x:Name="UsernamePlaceholder" 
-                       Text="Имя пользователя" 
-                       Foreground="Gray" 
-                       VerticalAlignment="Top" 
-                       Margin="4,10,0,0" 
-                       IsHitTestVisible="True" 
-                       />
-        </Grid>
-
-        <!-- Поле для пароля с плейсхолдером -->
-        <Grid Margin="20,80,20,0">
-            <TextBlock x:Name="PasswordPlaceholder" 
-                       Text="Пароль" 
-                       Foreground="Gray" 
-                       VerticalAlignment="Top" 
-                       Margin="2,10,2,0" 
-                       IsHitTestVisible="False" />
-            <PasswordBox x:Name="RegisterPasswordBox" 
-                         PasswordChanged="RegisterPasswordBox_PasswordChanged" 
-                         VerticalAlignment="Top" 
-                         Margin="2,30,2,0" 
-                         Background="Transparent" />
-        </Grid>
-
-        <!-- Выпадающий список для выбора роли -->
-        <ComboBox x:Name="RoleComboBox" 
-          Margin="20,140,20,167">
-            <ComboBoxItem Content="Admin"/>
-            <ComboBoxItem Content="Moderator"/>
-            <ComboBoxItem Content="User" IsSelected="True"/>
-        </ComboBox>
-
-        <!-- Кнопка регистрации -->
-        <Button Content="Зарегистрироваться" 
-                Click="RegisterButton_Click" 
-                Margin="20,221,20,95"/>
-
-        <!-- Кнопка назад -->
-        <Button Content="Назад" 
-                Click="BackButton_Click" 
-                Margin="20,288,20,21"/>
-
-        <!-- Статус регистрации -->
-        <TextBlock x:Name="RegisterStatus" 
-                   Foreground="Red" 
-                   Margin="20,290,20,21" />
+        Title="Регистрация" Height="490" Width="420" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Grid>
+        <Border Background="White" CornerRadius="14" Padding="28" Margin="24">
+            <Border.Effect>
+                <DropShadowEffect Color="Black" BlurRadius="10" ShadowDepth="2" Opacity="0.2"/>
+            </Border.Effect>
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                <TextBlock Text="Регистрация" FontSize="22" FontWeight="Bold" Foreground="#2D3748" Margin="0,0,0,18" HorizontalAlignment="Center"/>
+                <!-- Имя пользователя -->
+                <Grid Margin="0,0,0,12">
+                    <TextBox x:Name="RegisterUsernameTextBox"
+                             Height="36"
+                             FontSize="15"
+                             Padding="8,0,8,0"
+                             Background="#f7fafc"
+                             BorderBrush="#CBD5E1"
+                             BorderThickness="1"
+                             GotFocus="RegisterUsernameTextBox_GotFocus"
+                             LostFocus="RegisterUsernameTextBox_LostFocus"
+                             TextChanged="RegisterUsernameTextBox_TextChanged"/>
+                    <TextBlock x:Name="UsernamePlaceholder"
+                               Text="Имя пользователя"
+                               Foreground="#A0AEC0"
+                               FontSize="15"
+                               Margin="12,0,0,0"
+                               VerticalAlignment="Center"
+                               IsHitTestVisible="False"
+                               Visibility="Visible"/>
+                </Grid>
+                <!-- Пароль -->
+                <Grid Margin="0,0,0,12">
+                    <PasswordBox x:Name="RegisterPasswordBox"
+                                 Height="36"
+                                 FontSize="15"
+                                 Padding="8,0,8,0"
+                                 Background="#f7fafc"
+                                 BorderBrush="#CBD5E1"
+                                 BorderThickness="1"
+                                 PasswordChanged="RegisterPasswordBox_PasswordChanged"/>
+                    <TextBlock x:Name="PasswordPlaceholder"
+                               Text="Пароль"
+                               Foreground="#A0AEC0"
+                               FontSize="15"
+                               Margin="12,0,0,0"
+                               VerticalAlignment="Center"
+                               IsHitTestVisible="False"
+                               Visibility="Visible"/>
+                </Grid>
+                <!-- Роль -->
+                <ComboBox x:Name="RoleComboBox"
+                          Height="36"
+                          FontSize="15"
+                          Margin="0,0,0,12"
+                          Background="#f7fafc"
+                          BorderBrush="#CBD5E1"
+                          BorderThickness="1">
+                    <ComboBoxItem Content="Admin"/>
+                    <ComboBoxItem Content="Moderator"/>
+                    <ComboBoxItem Content="User" IsSelected="True"/>
+                </ComboBox>
+                <!-- Кнопка регистрации -->
+                <Button Content="Зарегистрироваться"
+                        Height="36"
+                        Margin="0,8,0,0"
+                        Background="#4299E1"
+                        Foreground="White"
+                        FontWeight="SemiBold"
+                        BorderThickness="0"
+                        Cursor="Hand"
+                        Click="RegisterButton_Click"/>
+                <!-- Кнопка назад -->
+                <Button Content="Назад"
+                        Height="32"
+                        Margin="0,8,0,0"
+                        Background="#E2E8F0"
+                        Foreground="#2D3748"
+                        BorderThickness="0"
+                        Cursor="Hand"
+                        Click="BackButton_Click"/>
+                <!-- Статус регистрации -->
+                <TextBlock x:Name="RegisterStatus"
+                           Foreground="Red"
+                           FontSize="13"
+                           Margin="0,8,0,0"
+                           TextWrapping="Wrap"/>
+            </StackPanel>
+        </Border>
     </Grid>
 </Window>

@@ -21,7 +21,6 @@ namespace SalesDataAnalysisApp.Views
             var fileService = new SalesDataAnalysisApp.FileManagement.FileService("Server=95.154.107.102;Database=SalesDataMiksist;Uid=student;Pwd=student;");
             var files = fileService.GetAllFiles();
 
-            // Файлы по дням
             var filesPerDay = files
                 .Where(f => f.CreatedDate != null)
                 .GroupBy(f => f.CreatedDate.Date)
@@ -38,7 +37,6 @@ namespace SalesDataAnalysisApp.Views
             };
             FilesPerDayLabels = filesPerDay.Keys.Select(d => d.ToString("dd.MM")).ToArray();
 
-            // Популярные категории
             var categories = files
                 .Where(f => !string.IsNullOrEmpty(f.Category))
                 .GroupBy(f => f.Category)

@@ -62,6 +62,66 @@ namespace SalesDataAnalysisApp.Users
                 command.ExecuteNonQuery();
             }
         }
+        public List<User> GetAllUsers()
+        {
+            var users = new List<User>();
+            using var connection = new MySqlConnector.MySqlConnection(_connectionString);
+            connection.Open();
+            var command = new MySqlConnector.MySqlCommand("SELECT * FROM Users", connection);
+            using var reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                users.Add(new User
+                {
+                    Id = reader.GetInt32("Id"),
+                    Username = reader.GetString("Username"),
+                    Role = (Role)Enum.Parse(typeof(Role), reader.GetString("Role")),
+                    IsBlocked = reader.GetBoolean("IsBlocked")
+                });
+            }
+            return users;
+        }
+        public void ChangePassword(int userId, string newPassword)
+        {
+            using var connection = new MySqlConnector.MySqlConnection(_connectionString);
+            connection.Open();
+            var command = new MySqlConnector.MySqlCommand(
+                "UPDATE Users SET Password = @Password WHERE Id = @UserId", connection);
+            command.Parameters.AddWithValue("@Password", newPassword);
+            command.Parameters.AddWithValue("@UserId", userId);
+            command.ExecuteNonQuery();
+        }
+        public void UnblockUser(int userId)
+        {
+            using (var connection = new MySqlConnector.MySqlConnection(_connectionString))
+            {
+                connection.Open();
+                var command = new MySqlConnector.MySqlCommand("UPDATE Users SET IsBlocked = false WHERE Id = @UserId", connection);
+                command.Parameters.AddWithValue("@UserId", userId);
+                command.ExecuteNonQuery();
+            }
+        }
+
+
+        public List<User> GetModeratorsAndAdmins()
+        {
+            var users = new List<User>();
+            using var connection = new MySqlConnection(_connectionString);
+            connection.Open();
+            var command = new MySqlCommand("SELECT * FROM Users WHERE Role IN ('Moderator', 'Admin') AND IsBlocked = false", connection);
+            using var reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                users.Add(new User
+                {
+                    Id = reader.GetInt32("Id"),
+                    Username = reader.GetString("Username"),
+                    Role = (Role)Enum.Parse(typeof(Role), reader.GetString("Role")),
+                    IsBlocked = reader.GetBoolean("IsBlocked")
+                });
+            }
+            return users;
+        }
 
         public void DeleteUser(int userId)
         {

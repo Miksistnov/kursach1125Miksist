@@ -36,8 +36,8 @@ namespace SalesDataAnalysisApp
         {
             var openFileDialog = new OpenFileDialog
             {
-                Filter = "Word документы (*.docx)|*.docx",
-                Title = "Выберите файл Word"
+                Filter = "Документы (*.docx;*.pdf)|*.docx;*.pdf|Все файлы (*.*)|*.*",
+                Title = "Выберите файл"
             };
             if (openFileDialog.ShowDialog() == true)
             {
@@ -71,7 +71,11 @@ namespace SalesDataAnalysisApp
 
             try
             {
-                _fileService.UploadFile(_file);
+                if (_file.Id != 0)
+                    _fileService.UpdateFile(_file, _currentUser); 
+                else
+                    _fileService.UploadFile(_file, _currentUser); 
+
                 this.DialogResult = true;
                 this.Close();
             }
@@ -80,6 +84,7 @@ namespace SalesDataAnalysisApp
                 MessageBox.Show("Ошибка при сохранении файла: " + ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {

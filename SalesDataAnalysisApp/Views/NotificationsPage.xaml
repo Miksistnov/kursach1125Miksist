@@ -3,14 +3,46 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       Title="Notifications Page">
     <Grid>
-        <ListView x:Name="NotificationsList">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="Message" DisplayMemberBinding="{Binding Message}"/>
-                    <GridViewColumn Header="Date" DisplayMemberBinding="{Binding Timestamp}"/>
-                    <GridViewColumn Header="Read" DisplayMemberBinding="{Binding IsRead}"/>
-                </GridView>
-            </ListView.View>
-        </ListView>
+        <Grid Background="White" Margin="15">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="10,5,10,5">
+                <Button Content="Все" Click="ShowAll_Click" Margin="0,0,10,0"/>
+                <Button Content="Непрочитанные" Click="ShowUnread_Click" Margin="0,0,10,0"/>
+                <Button Content="Прочитанные" Click="ShowRead_Click"/>
+            </StackPanel>
+            <ListView x:Name="NotificationsList" Grid.Row="1" Margin="10">
+                <ListView.Resources>
+                    <Style TargetType="ListViewItem">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsRead}" Value="False">
+                                <Setter Property="FontWeight" Value="Bold"/>
+                                <Setter Property="Background" Value="#FFF9E5"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </ListView.Resources>
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Сообщение" Width="350" DisplayMemberBinding="{Binding Message}"/>
+                        <GridViewColumn Header="Дата" Width="170" DisplayMemberBinding="{Binding Timestamp}"/>
+                        <GridViewColumn Header="Прочитано" Width="80">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <CheckBox IsChecked="{Binding IsRead, Mode=OneWay}" IsEnabled="False"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Right" Margin="10,5">
+                <Button Content="Пометить как прочитанное" Click="MarkAsRead_Click" Margin="5"/>
+                <Button Content="Обновить" Click="Refresh_Click" Margin="5"/>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Page>

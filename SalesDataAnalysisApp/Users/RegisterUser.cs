@@ -19,11 +19,7 @@ namespace SalesDataAnalysisApp.Users
                 throw new Exception("Имя пользователя уже занято.");
             }
 
-            // Проверка сложности пароля
-            if (!IsPasswordComplex(password))
-            {
-                throw new Exception("Пароль должен содержать хотя бы 8 символов, включая буквы и цифры.");
-            }
+            //
 
             using (var connection = new MySqlConnection(connectionString))
             {
@@ -40,11 +36,7 @@ namespace SalesDataAnalysisApp.Users
             }
         }
 
-        private bool IsPasswordComplex(string password)
-        {
-
-            return password.Length >= 8 && password.Any(char.IsDigit) && password.Any(char.IsLetter);
-        }
+       
 
 
         private bool IsUsernameTaken(string username)

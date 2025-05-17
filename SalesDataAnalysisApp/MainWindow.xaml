@@ -7,15 +7,8 @@
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize">
 
-
     <Window.Resources>
-        <Style x:Key="ModernWindowStyle" TargetType="Window">
-            <Setter Property="Background" Value="#F5F5F5"/>
-            <Setter Property="Foreground" Value="#333333"/>
-            <Setter Property="FontFamily" Value="Segoe UI"/>
-        </Style>
-
-        <Style x:Key="LoginButtonStyle" TargetType="Button" BasedOn="{StaticResource ModernButton}">
+        <Style x:Key="LoginButtonStyle" TargetType="Button">
             <Setter Property="Background" Value="#2E86C1"/>
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="FontSize" Value="14"/>
@@ -33,7 +26,6 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <!-- Левая панель с логотипом -->
         <Border Grid.Column="0" Background="#2E86C1">
             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
                 <TextBlock Text="Система управления документами" 
@@ -44,10 +36,8 @@
             </StackPanel>
         </Border>
 
-        <!-- Центральная разделительная линия -->
         <Rectangle Grid.Column="1" Width="1" Fill="#DDDDDD"/>
 
-        <!-- Правая панель с формой входа -->
         <StackPanel Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" Width="300">
             <TextBlock Text="Вход в систему" 
                        FontSize="24" 
@@ -56,12 +46,10 @@
 
             <TextBox x:Name="UsernameTextBox" 
                      Tag="Имя пользователя"
-                     Style="{StaticResource MaterialTextBox}"
                      Margin="0,0,0,15"/>
 
             <PasswordBox x:Name="PasswordBox" 
                          Tag="Пароль"
-                         Style="{StaticResource MaterialPasswordBox}"
                          Margin="0,0,0,25"/>
 
             <Button x:Name="LoginButton" 

@@ -4,7 +4,6 @@
       Title="Управление файлами">
 
     <Page.Resources>
-        <!-- Иконка папки -->
         <DrawingImage x:Key="ArchiveIcon">
             <DrawingImage.Drawing>
                 <GeometryDrawing Brush="#FFC68642">
@@ -14,8 +13,6 @@
                 </GeometryDrawing>
             </DrawingImage.Drawing>
         </DrawingImage>
-
-        <!-- Стиль для архивов -->
         <Style x:Key="ArchiveListBoxItemStyle" TargetType="ListBoxItem">
             <Setter Property="Padding" Value="6"/>
             <Setter Property="Margin" Value="2"/>
@@ -54,33 +51,38 @@
             <ColumnDefinition Width="220"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-
-        <!-- Архивы слева -->
         <ListBox x:Name="ArchiveListBox"
                  Grid.Column="0"
                  Margin="10"
                  ItemContainerStyle="{StaticResource ArchiveListBoxItemStyle}"
                  SelectionChanged="ArchiveListBox_SelectionChanged"/>
-
-        <!-- Файлы и кнопки справа -->
         <Grid Grid.Column="1" Margin="5">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-
             <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="0,0,0,5">
                 <Button Content="📂 Открыть" Click="OpenFileButton_Click" Margin="5"/>
-                <Button Content="⬆️ Загрузить изменённый" Click="UploadEditedFileButton_Click" Margin="5"/>
-                <Button Content="➕ Новый" Click="AddButton_Click" Margin="5"/>
-                <Button Content="✏️ Редактировать" Click="EditButton_Click" Margin="5"/>
-                <Button Content="🗑️ Удалить" Click="DeleteButton_Click" Margin="5"/>
+                <Button x:Name="UploadEditedFileButton" Content="⬆️ Загрузить изменённый" Click="UploadEditedFileButton_Click" Margin="5"/>
+                <Button x:Name="AddButton" Content="➕ Новый" Click="AddButton_Click" Margin="5"/>
+                <Button x:Name="EditButton" Content="✏️ Редактировать" Click="EditButton_Click" Margin="5"/>
+                <Button x:Name="DeleteButton" Content="🗑️ Удалить" Click="DeleteButton_Click" Margin="5"/>
+                <Button x:Name="DeleteSelectedButton" Content="🗑️ Удалить выбранные" Click="DeleteSelectedButton_Click" Margin="5"/>
+                <Button Content="👤 Модерация" Click="ModerationButton_Click" Margin="5"/>
             </StackPanel>
-
+            <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="0,0,0,10">
+                <TextBox x:Name="FilterTextBox" Width="200" Margin="0,0,10,0"
+                         VerticalAlignment="Center"
+                         ToolTip="Поиск по имени или категории"
+                         TextChanged="FilterTextBox_TextChanged"/>
+                <ComboBox x:Name="CategoryComboBox" Width="150" SelectionChanged="CategoryComboBox_SelectionChanged"
+                          VerticalAlignment="Center" ToolTip="Фильтр по категории"/>
+            </StackPanel>
             <ListView x:Name="FilesListView"
-                      Grid.Row="1"
+                      Grid.Row="2"
                       Margin="0"
-                      SelectionMode="Single">
+                      SelectionMode="Extended">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="Название" DisplayMemberBinding="{Binding Name}" Width="200"/>

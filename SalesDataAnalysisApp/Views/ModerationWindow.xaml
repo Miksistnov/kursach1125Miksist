@@ -1,0 +1,24 @@
+﻿<Window x:Class="SalesDataAnalysisApp.Views.ModerationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Модерация файлов" Height="400" Width="700" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid Margin="10">
+            <DataGrid x:Name="PendingFilesGrid" AutoGenerateColumns="False" IsReadOnly="True" SelectionMode="Extended">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Название" Binding="{Binding Name}" Width="*"/>
+                    <DataGridTextColumn Header="Автор" Binding="{Binding OwnerName}" Width="120"/>
+                    <DataGridTextColumn Header="Роль" Binding="{Binding OwnerRole}" Width="80"/>
+                    <DataGridTextColumn Header="Время заявки" Binding="{Binding CreatedDate}" Width="140"/>
+                    <DataGridTextColumn Header="Категория" Binding="{Binding Category}" Width="100"/>
+                    <DataGridTextColumn Header="Приоритет" Binding="{Binding Priority}" Width="60"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,10,0,0">
+                <Button Content="✅ Одобрить" Click="Approve_Click" Margin="5"/>
+                <Button Content="✅ Одобрить выбранные" Click="ApproveSelected_Click" Margin="5"/>
+                <Button Content="☠️ Отклонить" Click="Reject_Click" Margin="5"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>

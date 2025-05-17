@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using MySqlConnector;
 
 namespace SalesDataAnalysisApp.Notification
@@ -21,9 +18,8 @@ namespace SalesDataAnalysisApp.Notification
             using var connection = new MySqlConnection(_connectionString);
             connection.Open();
             string query = @"
-        INSERT INTO Notifications (UserId, Message, Timestamp, IsRead) 
-        VALUES (@UserId, @Message, @Timestamp, @IsRead)";
-
+                INSERT INTO Notifications (UserId, Message, Timestamp, IsRead) 
+                VALUES (@UserId, @Message, @Timestamp, @IsRead)";
             using var command = new MySqlCommand(query, connection);
             command.Parameters.AddWithValue("@UserId", userId);
             command.Parameters.AddWithValue("@Message", message);
@@ -31,7 +27,23 @@ namespace SalesDataAnalysisApp.Notification
             command.Parameters.AddWithValue("@IsRead", false);
             command.ExecuteNonQuery();
         }
-
+        public void MarkAsRead(int notificationId)
+        {
+            using var connection = new MySqlConnector.MySqlConnection(_connectionString);
+            connection.Open();
+            var command = new MySqlConnector.MySqlCommand(
+                "UPDATE Notifications SET IsRead = true WHERE Id = @Id", connection);
+            command.Parameters.AddWithValue("@Id", notificationId);
+            command.ExecuteNonQuery();
+        }
+        public void ClearNotifications(int userId)
+        {
+            using var connection = new MySqlConnector.MySqlConnection(_connectionString);
+            connection.Open();
+            var command = new MySqlConnector.MySqlCommand("DELETE FROM Notifications WHERE UserId = @UserId", connection);
+            command.Parameters.AddWithValue("@UserId", userId);
+            command.ExecuteNonQuery();
+        }
 
         public List<Notification> GetNotifications(int userId)
         {
@@ -55,5 +67,4 @@ namespace SalesDataAnalysisApp.Notification
             return notifications;
         }
     }
-
 }

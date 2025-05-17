@@ -1,11 +1,30 @@
-﻿<Page x:Class="SalesDataAnalysisApp.SettingsPage"
+﻿<Page x:Class="SalesDataAnalysisApp.Views.SettingsPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      Title="Settings Page">
-    <StackPanel>
-        <TextBlock Text="Настройки пользователя" FontSize="16"/>
-        <TextBlock Text="{Binding CurrentUser.Username}"/>
-        <Button Content="Сменить пароль" Click="ChangePassword_Click"/>
-        <Button Content="Выйти" Click="Logout_Click"/>
+      xmlns:conv="clr-namespace:SalesDataAnalysisApp.Converters"
+      Title="Настройки">
+    <Page.Resources>
+        <conv:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+    </Page.Resources>
+    <StackPanel Margin="20" VerticalAlignment="Top" HorizontalAlignment="Left">
+        <TextBlock Text="Настройки пользователя" FontSize="18" FontWeight="Bold" Margin="0,0,0,15"/>
+        <GroupBox Header="Смена пароля" Margin="0,0,0,15">
+            <StackPanel Margin="10">
+                <TextBlock Text="Старый пароль:" Margin="0,0,0,2"/>
+                <PasswordBox x:Name="OldPasswordBox" ToolTip="Старый пароль" Margin="0,0,0,8"/>
+                <TextBlock Text="Новый пароль:" Margin="0,0,0,2"/>
+                <PasswordBox x:Name="NewPasswordBox" ToolTip="Новый пароль" Margin="0,0,0,8"/>
+                <TextBlock Text="Повторите новый пароль:" Margin="0,0,0,2"/>
+                <PasswordBox x:Name="RepeatPasswordBox" ToolTip="Повторите новый пароль" Margin="0,0,0,12"/>
+                <Button Content="Сменить пароль" Width="150" Click="ChangePassword_Click"/>
+            </StackPanel>
+        </GroupBox>
+        <GroupBox Header="Уведомления" Margin="0,0,0,15">
+            <StackPanel Margin="10">
+                <Button Content="Показать уведомления" Width="200" Click="ShowNotifications_Click" Margin="0,0,0,5"/>
+                <Button Content="Очистить все уведомления" Width="200" Click="ClearNotifications_Click"/>
+            </StackPanel>
+        </GroupBox>
+        <Button Content="Выйти из аккаунта" Width="150" Margin="0,20,0,0" Click="Logout_Click"/>
     </StackPanel>
 </Page>

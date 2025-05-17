@@ -17,7 +17,6 @@ namespace SalesDataAnalysisApp
             InitializeComponent();
             Loaded += MainWindow_Loaded;
 
-            // Настройка визуальных эффектов
             this.Effect = new System.Windows.Media.Effects.DropShadowEffect
             {
                 Color = Colors.Black,

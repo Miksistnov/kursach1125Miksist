@@ -2,6 +2,7 @@
 using System.Windows.Controls;
 using SalesDataAnalysisApp.Model;
 using SalesDataAnalysisApp.FileManagement;
+using SalesDataAnalysisApp.Views;
 namespace SalesDataAnalysisApp
 {
     public partial class MainHubWindow : Window

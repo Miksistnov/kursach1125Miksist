@@ -2,33 +2,29 @@
 using MySqlConnector;
 using SalesDataAnalysisApp.Models;
 
-namespace SalesDataAnalysisApp.FileManagement
+public class ArchiveService
 {
-    public class ArchiveService
+    private readonly string _connectionString;
+    public ArchiveService(string connectionString)
     {
-        private readonly string _connectionString;
+        _connectionString = connectionString;
+    }
 
-        public ArchiveService(string connectionString)
+    public List<Archive> GetAllArchives()
+    {
+        var archives = new List<Archive>();
+        using var connection = new MySqlConnection(_connectionString);
+        connection.Open();
+        var command = new MySqlCommand("SELECT Id, Name FROM Archive", connection);
+        using var reader = command.ExecuteReader();
+        while (reader.Read())
         {
-            _connectionString = connectionString;
-        }
-
-        public List<Archive> GetAllArchives()
-        {
-            var archives = new List<Archive>();
-            using var connection = new MySqlConnection(_connectionString);
-            connection.Open();
-            var command = new MySqlCommand("SELECT * FROM Archive", connection);
-            using var reader = command.ExecuteReader();
-            while (reader.Read())
+            archives.Add(new Archive
             {
-                archives.Add(new Archive
-                {
-                    Id = reader.GetInt32("Id"),
-                    Name = reader.GetString("Name")
-                });
-            }
-            return archives;
+                Id = reader.GetInt32("Id"),
+                Name = reader.GetString("Name")
+            });
         }
+        return archives;
     }
 }
